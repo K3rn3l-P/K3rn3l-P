@@ -1,34 +1,50 @@
 ### Kernel
 
-Network engineer (Cisco). Networks, servers, private game servers, home automation.
+I'm a network engineer (Cisco). Most days that means infrastructure — networks, servers,
+virtualisation — and a fair amount of code that has to keep running when nobody is watching it.
 
-Most of my repositories are private and will stay that way, so the public list is a thin
-slice. Briefly, what the work actually is:
+Nearly everything I write lives in private repositories. That's not secrecy so much as the fact
+that most of them are backups and working notes for machines I actually run. It does mean this
+profile looks emptier than the work is, so here's a summary of it instead.
 
-**Forks that don't rot.** Most of what I run is upstream code with substantial changes on top.
-Those changes live on dedicated branches and get re-synced against upstream on a versioned
-cadence instead of drifting apart — nine sync branches on one C++ codebase, tagged releases on
-another. [anern-eco6200-eybond](https://github.com/K3rn3l-P/anern-eco6200-eybond) is the public
-example of the pattern: a Home Assistant integration for Anern ECO-6200 inverters, maintained
-over upstream with frame validation, anomaly tracking and stale-data detection.
+#### Forks I actually maintain
 
-**Server-side hardening.** Moving a privileged SQL CLR assembly out of a trusted database and
-into an isolated one: signature-based authorisation instead of trust flags, wrapper procedures,
-a command allowlist with destructive commands disabled by default, least-privilege service
-accounts, full audit trail.
+I run a lot of upstream code with heavy changes on top. Rather than let a fork drift until it
+can't be merged again, I keep my own work on its own branch and re-sync against upstream every
+time upstream ships — one branch per version. One C++ codebase is at nine of those by now
+(`modifiche-sync-main-v0.9` through `v1.3s`), each with a pre-sync backup branch, because I have
+lost custom hooks in a merge before and had to go dig them back out.
 
-**Protocol reverse engineering.** Solar inverters over Modbus and raw TCP, LTE modem band
-selection, game client/server packet encryption. Usually because the vendor app is bad and the
-hardware is fine.
+The one you can actually look at is
+[anern-eco6200-eybond](https://github.com/K3rn3l-P/anern-eco6200-eybond), a Home Assistant
+integration for Anern ECO-6200 inverters that talks to an EyBond Wi-Fi dongle over reverse-TCP
+and Modbus. Upstream targets different hardware, so my side adds frame validation, anomaly
+counting and stale-versus-fresh detection. The failures used to be silent, which is the worst
+kind to debug.
 
-**Reproducible machines, not hand-tuned boxes.** Bootstrap scripts that take a clean Linux or
-Windows install to a working environment at user scope, without root. Disaster-recovery runbooks
-that keep versioned config strictly separate from runtime secrets. An indexed archive of
-Proxmox, GPU-passthrough and NIC fixes, so I solve them once and not twice.
+#### Security work
 
-**A full private-server stack.** C++ core and patching framework, C# control console and
-launcher/updater, PHP site, anti-cheat, packet crypto, SQL Server automation.
+Mostly the kind that comes after something already works. On the game-server stack: per-IP and
+per-connection rate limiting, brute-force protection on login, single-use login nonces, PBKDF2
+and HMAC-SHA256 token auth, HWID checks, an audit log, server-side binary integrity checks that
+still hold if someone patches the updater, and AES-256-GCM on the client data archive.
 
-Daily driver: Arch Linux and Hyprland. Home Assistant runs the house.
+Separately, moving a privileged SQL CLR assembly out of a database running `TRUSTWORTHY ON` and
+into an isolated one, authorised by signature instead of by trust flag — wrapper procedures, a
+command allowlist with the destructive entries disabled by default, least-privilege accounts,
+and every command logged.
+
+#### Reverse engineering
+
+Solar inverters, LTE modem band selection, game client and server packet encryption. Usually
+because the hardware is fine and the vendor's software isn't.
+
+#### Machines I can rebuild
+
+Bootstrap scripts that take a clean Linux or Windows install to a working environment at user
+scope, without root. Dotfiles that restore this Arch + Hyprland desktop exactly, including the
+step that reminds me to check the LUKS passphrase is still typeable on the new keyboard layout
+*before* rebooting. And an indexed archive of Proxmox, GPU-passthrough and NIC fixes, so nothing
+has to be worked out twice.
 
 <sub>On stars, followers and the rest: <a href="https://www.antirez.com/news/171">antirez, news/171</a>.</sub>
