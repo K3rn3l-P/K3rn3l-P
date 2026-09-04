@@ -7,7 +7,7 @@ run. What the work looks like:
 
 - **Forks I keep alive.** Heavy changes on upstream code, parked on their own branch and re-synced
   against upstream every release instead of left to drift: nine sync branches on one C++ codebase,
-  each with its own pre-sync backup. The pinned repo below is the public example of it.
+  each with its own pre-sync backup. The pinned Home Assistant integration below is the public sample of it.
 - **Hardening after the fact.** Per-IP rate limiting, brute-force protection, PBKDF2 and HMAC
   token auth, HWID, audit logs, server-side integrity checks that survive a patched updater. And
   a privileged SQL CLR assembly moved out of a `TRUSTWORTHY ON` database into a signed, isolated
