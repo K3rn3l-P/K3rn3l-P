@@ -1,7 +1,5 @@
 ### Kernel
 
-Network engineer (Cisco). Infrastructure, servers, private game servers, home automation.
-
 Most of my repositories are private — they're backups and working notes for machines I actually
 run. What the work looks like:
 
@@ -27,9 +25,10 @@ run. What the work looks like:
   asset archives, packet crypto, anti-tamper and integrity checks, tooling injected into closed
   binaries, assembly hooks and memory injection — usually because the hardware is fine and the
   vendor's software isn't.
-- **Machines I can rebuild.** Root-less bootstrap for a clean Linux or Windows install, Arch +
-  Hyprland dotfiles that restore this desktop exactly, an indexed archive of Proxmox, GPU
-  passthrough and NIC fixes.
+- **Machines I can rebuild.** Root-less, package-manager-agnostic bootstrap for a clean Linux or
+  Windows install. Idempotent installers with backup on overwrite, privilege separation between
+  user-scope and system steps, pre-reboot verification of full-disk-encryption unlock. Unattended
+  Windows VM provisioning.
 - **Agentic coding, on rails.** Refine → Plan → Act, model rotation per phase, my own overrides
   on top of upstream skills. And guardrails in code rather than in the prompt for an agent acting
   on a live server: tiered actions, deny-by-default allowlists with an independent second check,
