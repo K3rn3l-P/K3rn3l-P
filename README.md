@@ -5,9 +5,10 @@ run. What the work looks like:
 
 - **Networks.** pfSense and OPNsense edges, Catalyst from the serial console, Ubiquiti
   point-to-point radio links, UniFi gateways. VLAN segmentation with zone-based firewalling,
-  policy routing to per-segment VPN egress, 802.1X port profiles over RADIUS, scoped multicast
-  reflection, split-horizon DNS behind a single reverse proxy, WAF and identity-aware access at
-  the edge, DNS-01 certificates so internal hostnames carry real TLS.
+  policy routing to per-segment VPN egress, chained VPN relay with mid-tunnel IPS, 802.1X port
+  profiles over RADIUS, scoped multicast reflection, split-horizon DNS behind a single reverse
+  proxy, WAF and identity-aware access at the edge, DNS-01 certificates so internal hostnames
+  carry real TLS.
 - **Forks I keep alive.** Heavy changes on upstream code, parked on their own branch and re-synced
   against upstream every release instead of left to drift: a C++ codebase running tens of
   thousands of lines ahead of upstream across dozens of files, each sync with its own pre-sync
